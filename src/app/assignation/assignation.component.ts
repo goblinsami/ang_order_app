@@ -55,4 +55,18 @@ export class AssignationComponent {
       ]
     }
   ]
+
+  handleChangeRoute(routes: Array<string>) {
+    let actualRoute = routes[0]
+    let newRoute = routes[1]
+    let productId = routes[2]
+
+    let originRoute = this.routes_hard.find(el => el.routeId === actualRoute)
+    let index = originRoute?.productsToDeliver.findIndex(el => el.orderId == productId) as number
+    originRoute?.productsToDeliver.splice(index, 1)
+    let newRouteTarget = this.routes_hard.find(el => el.routeId === newRoute)
+    newRouteTarget?.productsToDeliver.push({ 'orderId': productId })
+
+
+  }
 }

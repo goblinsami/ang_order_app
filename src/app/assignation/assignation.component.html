@@ -8,9 +8,8 @@
     <strong>Productos:</strong>
     <ul>
       <li *ngFor="let product of route.productsToDeliver">
-        <app-product [product]="product.orderId"></app-product>
-<!--         <strong>orderId:</strong> {{product.orderId}}
- -->      </li>
+        <app-product (changeRoute)="handleChangeRoute($event)" [product]="product.orderId" [actualRoute]="route.routeId"></app-product>
+   </li>
     </ul>
   </li>
 </ul>
