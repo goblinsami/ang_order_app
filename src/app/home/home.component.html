@@ -1,0 +1,10 @@
+<h1>Pedidos</h1>
+<ul>
+  <li *ngFor="let order of orders_hard">
+    <p><strong>OrderId:</strong> {{ order.orderId }}</p>
+    <p><strong>Producto:</strong> {{ order.productName }}</p>
+    <p><strong>Precio:</strong> {{ order.price }}</p>
+    <p><strong>Ubicación de entrega:</strong> {{ order.deliveryLocation.latitude }}, {{ order.deliveryLocation.longitude
+      }}</p>
+  </li>
+</ul>

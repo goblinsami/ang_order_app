@@ -1,0 +1,16 @@
+<h1>Assignation</h1>
+<ul>
+  <li *ngFor="let route of routes_hard">
+    <p><strong>RouteId:</strong> {{ route.routeId }}</p>
+    <p><strong>driverId:</strong> {{ route.driverId }}</p>
+
+    <p><strong>Producto:</strong> {{ route.driverId }}</p>
+    <strong>Productos:</strong>
+    <ul>
+      <li *ngFor="let product of route.productsToDeliver">
+        <app-product [product]="product.orderId"></app-product>
+<!--         <strong>orderId:</strong> {{product.orderId}}
+ -->      </li>
+    </ul>
+  </li>
+</ul>
