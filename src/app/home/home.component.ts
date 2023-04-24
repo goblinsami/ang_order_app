@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+
   orders_hard = [
     {
       "orderId": "1",

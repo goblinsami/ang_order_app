@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-assignation',
@@ -6,7 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./assignation.component.scss']
 })
 export class AssignationComponent {
+  @ViewChild(MatAccordion) accordion: MatAccordion;
 
+  constructor() {
+    this.accordion = new MatAccordion();
+  }
+  displayMode: string = 'default';
+  multi = false;
+  hideToggle = false;
+  disabled = false;
+  showPanel3 = true;
+/*   expandedHeight: string;
+  collapsedHeight: string; */
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  panelOpenState = false;
+  openedPanelIndex: number = -1;
 
   routes_hard = [
     {
@@ -66,7 +81,18 @@ export class AssignationComponent {
     originRoute?.productsToDeliver.splice(index, 1)
     let newRouteTarget = this.routes_hard.find(el => el.routeId === newRoute)
     newRouteTarget?.productsToDeliver.push({ 'orderId': productId })
-
+    this.openedPanelIndex = this.routes_hard.findIndex(route => route.routeId === actualRoute);
 
   }
+
+  handleExpand(index: number) {
+    return true
+  }
+  test() {
+    this.accordion.openAll()
+  }
+
+
+
+
 }

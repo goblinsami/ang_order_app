@@ -1,10 +1,9 @@
-<div class="product">
-  <p><strong>orderId:</strong>{{product}}</p>
-  <p><strong>actualRoute:</strong>{{actualRoute}}</p>
-
-
-<button (click)="onButtonClick()">Editar</button>
-<select [(ngModel)]="newRoute" *ngIf="isEdited" name="newRoute" id="">
+<div>
+  <span><strong>orderId:</strong>{{product}}</span>
+<button (click)="toggleEdition()" *ngIf="!isEdited" >Editar</button>
+<select [(ngModel)]="newRoute" *ngIf="isEdited" name="newRoute">
   <option *ngFor="let opt of routesOptions" [disabled]="opt === actualRoute">{{opt}}</option>
 </select>
 <button *ngIf="isEdited" (click)="onSave()">Guardar</button>
+<button *ngIf="isEdited" (click)="toggleEdition()">X</button>
+</div>

@@ -21,8 +21,8 @@ export class ProductComponent {
   onSave() {
     this.changeRoute.emit([this.actualRoute, this.newRoute, this.product]);
   }
-  onButtonClick() {
-    this.isEdited = true
+  toggleEdition() {
+    this.isEdited = !this.isEdited
   }
   @Input() product?: Object;
   @Input() actualRoute?: Object;

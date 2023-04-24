@@ -1,15 +1,26 @@
-<h1>Assignation</h1>
-<ul>
-  <li *ngFor="let route of routes_hard">
-    <p><strong>RouteId:</strong> {{ route.routeId }}</p>
-    <p><strong>driverId:</strong> {{ route.driverId }}</p>
+<main class="main_container">
+  <h1>Assignation</h1>
+  <mat-accordion multi>
+    <section class="assignation_button_group">
+      <button mat-raised-button (click)="accordion.closeAll()">Close All</button>
+      <button mat-raised-button (click)="accordion.openAll()">Expand All</button>
+    </section>
+    <mat-expansion-panel expanded="true" *ngFor="let route of routes_hard">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p><strong>RouteId:</strong> {{ route.routeId }}</p>
+        </mat-panel-title>
+        <mat-panel-description>
+          <p><strong>driverId:</strong> {{ route.driverId }}</p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-card class="card" *ngFor="let product of route.productsToDeliver">
+            <app-product (changeRoute)="handleChangeRoute($event)" [product]="product.orderId"
+              [actualRoute]="route.routeId"></app-product>
+        </mat-card>
+      </mat-list>
 
-    <p><strong>Producto:</strong> {{ route.driverId }}</p>
-    <strong>Productos:</strong>
-    <ul>
-      <li *ngFor="let product of route.productsToDeliver">
-        <app-product (changeRoute)="handleChangeRoute($event)" [product]="product.orderId" [actualRoute]="route.routeId"></app-product>
-   </li>
-    </ul>
-  </li>
-</ul>
+    </mat-expansion-panel>
+  </mat-accordion>
+</main>
