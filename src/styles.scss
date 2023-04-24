@@ -13,8 +13,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding: 1rem;
     flex-direction: row;
 }
-
-
+.error.mat-mdc-snack-bar-container {
+  background: red!important;
+}
 button, select {
   padding: 5px;
 }

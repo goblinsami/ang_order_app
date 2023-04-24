@@ -1,15 +1,20 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppModule } from 'src/app/app.module'
+import { ProductComponent } from '../product/product.component';
 
 @Component({
   selector: 'app-assignation',
   templateUrl: './assignation.component.html',
   styleUrls: ['./assignation.component.scss']
 })
+
+
 export class AssignationComponent {
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
-  constructor() {
+  constructor(private snackBar: MatSnackBar) {
     this.accordion = new MatAccordion();
   }
   displayMode: string = 'default';
@@ -70,29 +75,42 @@ export class AssignationComponent {
       ]
     }
   ]
+  showErrorMessage() {
+    this.snackBar.open('La nueva ruta está vacía', 'Cerrar', {
+      duration: 500000, // duración en milisegundos
+      panelClass: 'error', // clase CSS personalizada
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
+  }
 
+  showSuccessMessage(newRoute: string) {
+    this.snackBar.open(`El producto se ha cambiado a la ruta ${newRoute}`, 'Cerrar', {
+      duration: 500000, // duración en milisegundos
+      panelClass: 'error', // clase CSS personalizada
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
+  }
   handleChangeRoute(routes: Array<string>) {
     let actualRoute = routes[0]
     let newRoute = routes[1]
     let productId = routes[2]
+    console.log(newRoute)
 
-    let originRoute = this.routes_hard.find(el => el.routeId === actualRoute)
-    let index = originRoute?.productsToDeliver.findIndex(el => el.orderId == productId) as number
-    originRoute?.productsToDeliver.splice(index, 1)
-    let newRouteTarget = this.routes_hard.find(el => el.routeId === newRoute)
-    newRouteTarget?.productsToDeliver.push({ 'orderId': productId })
-    this.openedPanelIndex = this.routes_hard.findIndex(route => route.routeId === actualRoute);
+    if (newRoute) {
+      let originRoute = this.routes_hard.find(el => el.routeId === actualRoute)
+      let index = originRoute?.productsToDeliver.findIndex(el => el.orderId == productId) as number
+      originRoute?.productsToDeliver.splice(index, 1)
+      let newRouteTarget = this.routes_hard.find(el => el.routeId === newRoute)
+      newRouteTarget?.productsToDeliver.push({ 'orderId': productId })
+      this.openedPanelIndex = this.routes_hard.findIndex(route => route.routeId === actualRoute);
+      this.showSuccessMessage(newRoute)
+    } else {
+      this.showErrorMessage()
+    }
 
   }
-
-  handleExpand(index: number) {
-    return true
-  }
-  test() {
-    this.accordion.openAll()
-  }
-
-
 
 
 }

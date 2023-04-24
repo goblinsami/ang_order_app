@@ -1,35 +1,54 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { AssignationComponent } from './assignation/assignation.component';
+import { HomeComponent } from './home/home.component';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  let fixture: ComponentFixture<AppComponent>;
+  let router: Router;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule.withRoutes([
+          { path: 'assignation', component: AppComponent },
+          { path: 'home', component: AppComponent }
+
+        ])
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        AssignationComponent
       ],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    router = TestBed.inject(Router);
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ang_order_app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ang_order_app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('ang_order_app app is running!');
-  });
+  it('should navigate to Assignation component on button click', fakeAsync(() => {
+    spyOn(router, 'navigate');
+    const button = fixture.nativeElement.querySelector('#assignation_btn');
+    button.click();
+    tick();
+    expect(router.url).toEqual('/assignation');
+    console.log(router)
+    /* expect(router.navigate).toHaveBeenCalledWith(['/assignation']); */
+  }));
+  it('should navigate to Home component on button click', fakeAsync(() => {
+    spyOn(router, 'navigate');
+    const button = fixture.nativeElement.querySelector('#home_btn');
+    button.click();
+    tick();
+    expect(router.url).toEqual('/home');
+    console.log(router)
+    /* expect(router.navigate).toHaveBeenCalledWith(['/assignation']); */
+  }));
 });

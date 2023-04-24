@@ -13,11 +13,15 @@
         <mat-panel-description>
           <p><strong>driverId:</strong> {{ route.driverId }}</p>
         </mat-panel-description>
+
+        <mat-panel-description>
+          <p><strong>#Productos:</strong> {{ route.productsToDeliver.length }}</p>
+        </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-list>
         <mat-card class="card" *ngFor="let product of route.productsToDeliver">
-            <app-product (changeRoute)="handleChangeRoute($event)" [product]="product.orderId"
-              [actualRoute]="route.routeId"></app-product>
+          <app-product (changeRoute)="handleChangeRoute($event)" [product]="product.orderId"
+            [actualRoute]="route.routeId"></app-product>
         </mat-card>
       </mat-list>
 
