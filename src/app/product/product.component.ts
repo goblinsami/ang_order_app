@@ -6,14 +6,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent {
+  selectedValue: string = ''
   isEdited = false
-  singleSelect = null
-  model = null
-  availableOptions = [
-    { id: '1', name: 'Option A' },
-    { id: '2', name: 'Option B' },
-    { id: '3', name: 'Option C' }
-  ]
   newRoute = null
   routesOptions = ["1","2","3"]
   @Output() changeRoute = new EventEmitter();

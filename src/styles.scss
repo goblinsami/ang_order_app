@@ -7,15 +7,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .card {
   margin: 5px;
   background-color: rgb(212, 212, 212)!important;
-  width: 30%;
+  width: 60%;
   display: flex;
   justify-content: space-between!important;
     padding: 1rem;
     flex-direction: row;
 }
-.error.mat-mdc-snack-bar-container {
-  background: red!important;
-}
+
 button, select {
   padding: 5px;
 }
@@ -24,6 +22,28 @@ select {
   margin: 0 5px;
 }
 
+.products_title {
+  padding-left: 10px;
+}
+
+.success-snackbar {
+  color: white;
+  --mdc-snackbar-container-color: green;
+
+  .mat-simple-snackbar-action {
+    color: white;
+  }
+}
+.error-snackbar {
+  color: rgb(0, 0, 0);
+  --mdc-snackbar-container-color: rgb(255, 0, 0);
+.mat-mdc-snack-bar-label .mdc-snackbar__label {
+  color: rgb(255, 208, 0);
+}
+  .mat-simple-snackbar-action {
+    color: rgb(0, 0, 0)!important;
+  }
+}
 .main_container {
   display: flex;
   justify-content: center;
@@ -42,8 +62,21 @@ select {
 .assignation_button_group {
   margin: 8px 0;
 }
-/* .product {
-  padding: 1rem;
+
+#close_btn {
+  margin-bottom: 35px;
+}
+.product_container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-} */
+  flex-direction: row;
+}
+.form_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 13px 0;
+}

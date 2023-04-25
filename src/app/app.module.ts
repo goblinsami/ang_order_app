@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -15,20 +14,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
 
-/* import {
-  MatButtonModule,
-  MatCheckboxModule,
-  MatExpansionModule,
-  MatSlideToggleModule
-} from '@angular/material';
- */
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AssignationComponent,
     ProductComponent,
+
   ],
   imports: [
     FormsModule,
@@ -42,8 +38,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatSnackBarModule
-
+    MatSnackBarModule,
+    HttpClientModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],

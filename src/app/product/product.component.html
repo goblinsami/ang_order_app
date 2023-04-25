@@ -1,9 +1,18 @@
-<div>
-  <span><strong>orderId:</strong>{{product}}</span>
-<button (click)="toggleEdition()" *ngIf="!isEdited" >Editar</button>
-<select [(ngModel)]="newRoute" *ngIf="isEdited" name="newRoute">
-  <option *ngFor="let opt of routesOptions" [disabled]="opt === actualRoute">{{opt}}</option>
-</select>
-<button *ngIf="isEdited" (click)="onSave()">Guardar</button>
-<button *ngIf="isEdited" (click)="toggleEdition()">X</button>
+<div class="product_container">
+  <div><strong>ORDER_ID:</strong> {{product}}</div>
+  <button mat-icon-button color="primary" (click)="toggleEdition()" *ngIf="!isEdited"><mat-icon>edit</mat-icon></button>
+</div>
+<div class="form_container">
+  <div *ngIf="isEdited">
+    <mat-form-field appearance="fill">
+      <mat-label>Nueva ruta</mat-label>
+      <mat-select [(ngModel)]="newRoute" name="selectedValue">
+        <mat-option *ngFor="let opt of routesOptions" [disabled]="opt === actualRoute" [value]="opt">
+          {{opt}}
+        </mat-option>
+      </mat-select>
+      <button mat-button color="primary" *ngIf="isEdited" (click)="onSave()">Guardar</button>
+    </mat-form-field>
+    <button id="close_btn" mat-button *ngIf="isEdited" (click)="toggleEdition()"><mat-icon>close</mat-icon></button>
+  </div>
 </div>

@@ -39,7 +39,6 @@ describe('AppComponent', () => {
     button.click();
     tick();
     expect(router.url).toEqual('/assignation');
-    console.log(router)
     /* expect(router.navigate).toHaveBeenCalledWith(['/assignation']); */
   }));
   it('should navigate to Home component on button click', fakeAsync(() => {
@@ -48,7 +47,6 @@ describe('AppComponent', () => {
     button.click();
     tick();
     expect(router.url).toEqual('/home');
-    console.log(router)
     /* expect(router.navigate).toHaveBeenCalledWith(['/assignation']); */
   }));
 });

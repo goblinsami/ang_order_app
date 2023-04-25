@@ -5,7 +5,8 @@ import { MatListModule } from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { ProductComponent } from '../product/product.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 import { AssignationComponent } from './assignation.component';
 
 describe('AssignationComponent', () => {
@@ -16,7 +17,7 @@ describe('AssignationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AssignationComponent, ProductComponent],
-      imports: [MatCardModule, MatSnackBarModule, MatExpansionModule, MatListModule, BrowserAnimationsModule],
+      imports: [MatCardModule, MatSnackBarModule, MatExpansionModule, MatListModule, BrowserAnimationsModule, HttpClientModule, MatIconModule],
       providers: [
         { provide: MatSnackBar, useValue: mockSnackBar }
       ]
@@ -33,7 +34,8 @@ describe('AssignationComponent', () => {
   it('should move product to new route on changeRoute event', () => {
     const product = component.routes_hard[0].productsToDeliver[0];
     const originalRoute = component.routes_hard[0];
-    component.handleChangeRoute([originalRoute.routeId, '2', product.orderId]);
+    component.handleChangeRoute([originalRoute.routeId, '2', product.orderId], 'test');
+    console.log(component.routes_hard)
     expect(component.routes_hard[1].productsToDeliver.length).toBe(4)
     expect(mockSnackBar.open).toHaveBeenCalledWith('El producto se ha cambiado a la ruta 2', 'Cerrar', jasmine.any(Object));
 
@@ -42,7 +44,7 @@ describe('AssignationComponent', () => {
   it('should not allow to move a product new route empty', () => {
     const product = component.routes_hard[0].productsToDeliver[0];
     const originalRoute = component.routes_hard[0];
-    component.handleChangeRoute([originalRoute.routeId, '', product.orderId]);
+    component.handleChangeRoute([originalRoute.routeId, '', product.orderId], 'test');
     expect(mockSnackBar.open).toHaveBeenCalledWith('La nueva ruta está vacía', 'Cerrar', jasmine.any(Object));
 
   });
