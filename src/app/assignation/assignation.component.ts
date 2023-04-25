@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
@@ -10,7 +10,6 @@ export interface Route {
   productsToDeliver: {
     orderId: string
   }[];
-
 }
 
 export interface Driver {
@@ -155,9 +154,11 @@ export class AssignationComponent {
     let routes_array = option === 'test' ? this.routes_hard : this.routes_api
     /* EVITA CAMBIAR PRODUCTOS SIN RUTA */
     if (newRoute) {
+      /* se elimina el producto de la ruta original */
       let originRoute = routes_array.find(el => el.routeId === actualRoute)
       let index = originRoute?.productsToDeliver.findIndex(el => el.orderId == productId) as number
       originRoute?.productsToDeliver.splice(index, 1)
+      /* se introduce en la ruta nueva */
       let newRouteTarget = routes_array.find(el => el.routeId === newRoute)
       newRouteTarget?.productsToDeliver.push({ 'orderId': productId })
       this.openedPanelIndex = routes_array.findIndex(route => route.routeId === actualRoute);
